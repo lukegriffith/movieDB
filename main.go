@@ -67,11 +67,13 @@ func handleMovies(w http.ResponseWriter, r *http.Request) {
 		err := r.ParseForm()
 		if err != nil {
 			http.Error(w, "Failed to parse form", http.StatusBadRequest)
+			return
 		}
 		movieTitle := r.FormValue("title")
 		err = movies.AddMovie(movies.MovieRequestProps{Title: movieTitle})
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
 		}
 		w.WriteHeader(http.StatusOK)
 		fmt.Fprint(w, "Movie Added")

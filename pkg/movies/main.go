@@ -13,7 +13,7 @@ var (
 type Title string
 
 func NewTitle(title string) (error, Title) {
-	if len(title) <= 0 {
+	if len(title) <= 10 {
 		return MovieTitleValidationErr, ""
 	}
 	return nil, Title(title)
